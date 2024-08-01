@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>圖片躲貓貓</title>
+	<style>
+		html,
+		body {
+			padding: 0;
+			margin: 0;
+			max-width: 1920px;
+		}
+
+		body,
+		#game {
+			width: 100%;
+			height: 100vh;
+			position: relative;
+		}
+
+		#game {
+			opacity: 0;
+			transition: 1s
+		}
+
+		img {
+			display: block;
+			opacity: 1;
+			position: absolute;
+			left: calc(50% - 25px);
+			top: calc(50% - 25px);
+			transition: 0.6s linear;
+
+		}
+
+		.transition_block {
+			position: absolute;
+			transition: 1s;
+			left: calc(50% - 50px);
+			top: calc(50% - 50px);
+			transform: translate(-50%, -50%);
+			/* 移動圖片,讓圖片對齊的點從左上移動至中央 */
+		}
+
+		.transition_block:hover img {
+			opacity: 1;
+			transform: scale(2);
+		}
+
+		/* ------------------------------------- */
+		#hidebox {
+			position: absolute;
+			border: 1px solid #99CCFF;
+			width: 400px;
+			height: 150px;
+			top: 45%;
+			left: 50%;
+			transform: translate(-50%, 0);
+			background-color: #fff;
+			display: none;
+			z-Index: 3;
+		}
+
+		#hidebox1 {
+			position: absolute;
+			border: 1px solid #99CCFF;
+			width: 400px;
+			height: 150px;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, 0);
+			background-color: #fff;
+			display: none;
+			z-Index: 3;
+		}
+
+		#content {
+			position: absolute;
+			width: 100%;
+			height: 100vh;
+			background-color: tomato;
+			font-size: 40px;
+			padding-top: 20vh;
+			text-align: center;
+			cursor: pointer;
+			z-Index: 1;
+		}
+
+		.button1 {
+			float: right;
+			cursor: pointer;
+		}
+
+		.button1:hover {
+			background-color: #c75050;
+			color: white;
+		}
+
+		.button2 {
+			background-color: #6a9f3f;
+			font-size: 18px;
+			margin: 0 10px;
+		}
+
+		#hidebox .p1,
+		#hidebox1 .p1 {
+			background-color: #336699;
+			width: 100%;
+			border: 1px solid silver;
+			float: left;
+			margin-top: 0px;
+		}
+
+		#hidebox .p2,
+		#hidebox1 .p2 {
+			text-align: center;
+		}
+
+		.a {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="hidebg"></div>
+	<div id="hidebox">
+		<p class="p1"><input class="button1" type="button" value="×" onClick="hide();"></p>
+		<p class="p2">遊戲即將開始，是否繼續？</p>
+		<div class="a">
+			<input class="button2" type="button" value="取消" onClick="hide()">
+			<input class="button2" type="button" value="確定" onClick="open_()">
+		</div>
+	</div>
+	<div id="hidebox1">
+		<p class="p1"><input class="button1" type="button" value="×" onClick="hide();"></p>
+		<p class="p2">挑戰成功!!!再次挑戰???</p>
+		<div class="a">
+			<input class="button2" type="button" value="取消" onClick="hide()">
+			<input class="button2" type="button" value="確定" onClick="open_()">
+		</div>
+	</div>
+	<div id="content" onClick="show();">圖片躲貓貓
+		<p>遊戲規則：找出"傻眼貓咪"</p>
+		<p>未使用全螢幕時，請先調整後重整即可</p>
+		<p>點擊開始遊戲</p>
+	</div>
+
+	<div id="game">
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c2.jpg" alt="">
+		</div>
+		<div class="transition_block" style="width:60px;height:60px;">
+			<img width="60px" src="./cat/c1.jpg" alt="">
+		</div>
+
+	</div>
+	<script>
+		function show()  //顯示隱藏層和彈出層 
+		{
+			hidebg.style.display = "block";  //顯示隱藏層 
+			document.getElementById("hidebox").style.display = "block";  //顯示彈出層 
+			document.getElementById("hidebox1").style.display = "none";  //顯示彈出層 
+		}
+		function hide()  //去除隱藏層和彈出層
+		{
+			document.getElementById("content").style.display = "block";
+			document.getElementById("hidebg").style.display = "none";
+			document.getElementById("hidebox").style.display = "none";
+			document.getElementById("hidebox1").style.display = "none";
+			document.getElementById("game").style.opacity = "0";
+		}
+		function open_() {
+			document.getElementById("content").style.display = "none";
+			document.getElementById("hidebg").style.display = "none";
+			document.getElementById("hidebox").style.display = "none";
+			document.getElementById("hidebox1").style.display = "none";
+			document.getElementById("game").style.opacity = "1";
+			game()
+			// window.location.href = "";
+		}
+	</script>
+
+	<script>
+		//1.觸發條件 起點
+		//2.畫面有什麼變化 -> 用JS控制CSS達到我要的效果 終點
+
+		//邏輯概念
+		//1.進入畫面後,圖片隨機分散在畫面中(random取得數值放入img的left和top中),位置必須限制在100%寬和100vh高之間 (完成)
+		//2.(方案A)偵測滑鼠距離所有圖片的位置,以某種算式來計算越接近滑鼠XY軸的圖片,會慢慢變大(未完成)
+		//2.(方案B)偵測圖片越接近滑鼠xy軸,減少transform:scale(0.5)變成scale(1) (未完成)
+		//////////////////////////////////////////////////////////////////////////////////////////////////////
+		//抓取螢幕寬高
+		var screen_width = document.querySelector('body').offsetWidth;
+		var screen_height = document.querySelector('body').offsetHeight;
+
+		// console.log(screen_width,screen_height);
+		//抓取所有存在的圖片變成陣列
+		var all_img = document.querySelectorAll('img');
+		var all_box = document.querySelectorAll('.transition_block');
+		//用來存照片位置
+		var img_position = {};
+
+		function game() {
+			//透過forEach給每個圖片外框一個隨機位置
+			all_box.forEach(function (box, index) {
+				//使用JS的random涵式,將上方取得的螢幕寬高作為隨機數最高上限,將取得的隨機x y位置放入圖片的left和top
+				var img_x = Math.floor(Math.random() * (screen_width - 150 + 1) + 100);
+				var img_y = Math.floor(Math.random() * (screen_height - 150 + 1) + 100);
+				box.style.left = img_x + 'px';
+				box.style.top = img_y + 'px';
+				//把每張照片的位置存起來，避免等等還要DOM
+				img_position[index] = { "x": img_x, "y": img_y };
+				//散開後隱藏
+				all_img[index].style.opacity = 0;
+			})
+		}
+
+
+
+		// ---------------------------------------------------------------------
+
+		//在body偵測滑鼠移動事件
+		var body = document.querySelector('body');
+
+		//滑鼠移動事件 function(e)的e為滑鼠本身(事件傳值),給下方去取得滑鼠的offsetX(X軸)和offsetY(Y軸)
+		body.addEventListener('mousemove', function (e) {
+			//取得滑鼠當前座標後去比較所有圖片的X和Y軸是否接近滑鼠距離
+			var x = e.pageX;
+			var y = e.pageY;
+
+			all_img.forEach(function (img, index) {
+				//勾股定理算距離，X平方+Y平方開根號 
+				var distance = Math.sqrt(Math.pow(Math.abs(x - img_position[index]['x']), 2) + Math.pow(Math.abs(y - img_position[index]['y']), 2));
+				// Math.sqrt = 計算平方根
+				// Math.pow = 計算次方
+				// Math.abs = 計算絕對值
+
+				// img_position為上方隨機位置時產生的數值作為紀錄,和滑鼠移動事件得到的x & y軸做計算
+
+				//透過勾股定理計算滑鼠與圖片的直線距離
+
+				if (distance < 100) {
+					all_img[index].style.opacity = 1
+				}
+				else {
+					all_img[index].style.opacity = 0
+				}
+			});
+
+			all_box[119].addEventListener('mouseenter', function () {
+				document.getElementById("hidebox1").style.display = "block";
+			})
+
+		});
+
+	</script>
+</body>
+
+</html>
